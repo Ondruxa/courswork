@@ -4,7 +4,7 @@ public class Employee {
     private String name;
     private int department;
     private int salary;
-    private int count = 0;
+    static int count = 1;
     private int id;
 
     public Employee(String name, int department, int salary) {
@@ -24,6 +24,10 @@ public class Employee {
 
     public int getSalary() {
         return salary;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setDepartment(int department) {
@@ -48,7 +52,7 @@ public class Employee {
     }
 
     public String toString() {
-        return "фИО - " + this.name + ", отдел - " + this.department + ", зарплата - " + this.salary;
+        return this.id + " фИО - " + this.name + ", отдел - " + this.department + ", зарплата - " + this.salary;
     }
 
 
