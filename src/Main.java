@@ -48,7 +48,18 @@ public class Main {
             System.out.println("Средняя зп на отдел " + departmentNumber + " - " +
                     calculateMiddleSalaryOnDepartment(departmentNumber));
         }
+        for (int departmentNumber = 1; departmentNumber <= 5; departmentNumber++) {
+            double percentIndex = (double) 14 / 100;
+            indexSalaryOnDepartment(percentIndex, departmentNumber);
+        }
 
+        for (int departmentNumber = 1; departmentNumber <= 5; departmentNumber++) {
+            printEmployeeWithoutDepartment(departmentNumber);
+        }
+
+        int pointSalary = 89000;
+        printEmployeeWithSmallerSalary(pointSalary);
+        printEmployeeBiggerSmallerSalary(pointSalary);
     }
 
     private static int calculateSalary(Employee[] employee) {
@@ -165,7 +176,47 @@ public class Main {
                 count++;
             }
         }
-        return middleSalary/count;
+        return middleSalary / count;
     }
 
+    private static void indexSalaryOnDepartment(double percent, int department) {
+        double salary;
+        for (Employee employee : employees) {
+            if (employee.getDepartment() == department) {
+                salary = employee.getSalary() * percent + employee.getSalary();
+                employee.setSalary((int) salary);
+            }
+        }
+    }
+
+    private static void printEmployeeWithoutDepartment(int department) {
+        for (Employee employee : employees) {
+            if (employee.getDepartment() == department) {
+                System.out.println(employee.getId() + " ФИО сотрудника - " + employee.getName() +
+                        ", зп - " + employee.getSalary());
+            }
+        }
+        System.out.println();
+    }
+
+    private static void printEmployeeWithSmallerSalary(int pointSalary) {
+        for (Employee employee : employees) {
+            if (employee.getSalary() < pointSalary) {
+                System.out.println(employee.getId() + " ФИО сотрудника c зп меньше " + pointSalary +
+                        " - " + employee.getName() +
+                        ", зп - " + employee.getSalary());
+            }
+        }
+        System.out.println();
+    }
+
+    private static void printEmployeeBiggerSmallerSalary(int pointSalary) {
+        for (Employee employee : employees) {
+            if (employee.getSalary() >= pointSalary) {
+                System.out.println(employee.getId() + " ФИО сотрудника c зп больше " + pointSalary +
+                        " - " + employee.getName() +
+                        ", зп - " + employee.getSalary());
+            }
+        }
+    }
 }
